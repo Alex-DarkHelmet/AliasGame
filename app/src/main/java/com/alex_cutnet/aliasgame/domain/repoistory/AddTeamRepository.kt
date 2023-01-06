@@ -6,7 +6,4 @@ interface AddTeamRepository {
 
     fun addTeam(inputName: String): Team
 
-    fun changeSumOfCorrectAnswers(oldValue: Int)
-
-
 }
