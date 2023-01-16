@@ -1,13 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scenes.fragments.AddTeamFragment">
+    android:orientation="vertical"
+    tools:context=".scenes.fragments.AddTeamFragment"
+    tools:layout="@layout/fragment_add_team">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/header_add_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_team"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
-</FrameLayout>
+    <ScrollView
+        android:id="@+id/scroll_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header_add_team"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/team_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:showDividers="end"
+            android:padding="10sp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darker_grey"/>
+
+            <TextView
+                android:id="@+id/team_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:padding="10sp"
+                android:visibility="gone"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darker_grey"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/team_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:padding="10sp"
+                android:visibility="gone"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darker_grey"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/team_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:padding="10sp"
+                android:visibility="gone"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darker_grey"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/team_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:padding="10sp"
+                android:visibility="gone"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darker_grey"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/team_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:padding="10sp"
+                android:visibility="gone"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darker_grey"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_team"
+        android:padding="10sp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/scroll_team"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
