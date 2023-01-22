@@ -8,4 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darker_grey">#AAAAAA</color>
+
+    <color name="incorrect_btn">#FFf44336</color>
+    <color name="correct_btn">#FF8fce00</color>
+    <color name="mainBackground">#FFe69138</color>
+    <color name="buttons">#FF2986cc</color>
+    <color name="mainText">#FF16537e</color>
+
 </resources>
