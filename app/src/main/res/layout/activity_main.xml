@@ -5,7 +5,7 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.alex_cutnet.aliasgame.scenes.fragments.GameFragment"
+    android:name="com.alex_cutnet.aliasgame.scenes.fragments.AddTeamFragment"
     tools:context=".scenes.MainActivity"
-    tools:layout="@layout/fragment_game"
+    tools:layout="@layout/fragment_add_team"
     />
