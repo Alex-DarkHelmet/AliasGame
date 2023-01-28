@@ -42,4 +42,10 @@ class GameFragment : Fragment() {
 
         return textFile
     }
+
+    companion object {
+        fun newInstance(): GameFragment {
+            return GameFragment()
+        }
+    }
 }

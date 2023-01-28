@@ -2,7 +2,7 @@
     <string name="app_name">AliasGame</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_new_team">Add new team</string>
-    <string name="max_5_teams">(max 5 teams)</string>
+    <string name="max_5_teams">(max 5)</string>
     <string name="team">Team</string>
     <string name="random_word">random word</string>
     <string name="timer_format">00:00</string>
@@ -11,5 +11,6 @@
     <string name="example_question">example question</string>
     <string name="example_name_team">Example name team</string>
     <string name="round_1">Round 1</string>
+    <string name="save">Save</string>
 
 </resources>

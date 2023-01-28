@@ -162,10 +162,24 @@
         android:id="@+id/btn_add_team"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_team"
         android:padding="10sp"
-        tools:ignore="MissingConstraints"
+        android:text="@string/add_new_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scroll_team"
-        />
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:text="@string/save"
+        android:textSize="15sp"
+        android:layout_marginBottom="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
