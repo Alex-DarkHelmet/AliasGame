@@ -23,7 +23,7 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.nameTeam.text = arguments?.getString(TEAM_KEY)
 
     }
 
@@ -33,19 +33,24 @@ class GameFragment : Fragment() {
     }
 
     //reading file from assets
-    private fun readFileWithWords(): List<String> {
-        val textFile = activity?.assets
-            ?.open("words.txt")
-            ?.bufferedReader().use {
-                it?.readLines()
-            } ?: throw RuntimeException("file in not found")
-
-        return textFile
-    }
+//    private fun readFileWithWords(): List<String> {
+//        val textFile = activity?.assets
+//            ?.open("words.txt")
+//            ?.bufferedReader().use {
+//                it?.readLines()
+//            } ?: throw RuntimeException("file in not found")
+//
+//        return textFile
+//    }
 
     companion object {
-        fun newInstance(): GameFragment {
-            return GameFragment()
-        }
+        private const val TEAM_KEY = "team"
+
+        fun newInstanceGame(team: String) : GameFragment =
+            GameFragment().apply {
+                arguments = Bundle().apply {
+                    putString(TEAM_KEY, team)
+                }
+            }
     }
 }
