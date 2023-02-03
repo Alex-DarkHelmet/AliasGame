@@ -10,7 +10,6 @@ class AddTeamViewModel : ViewModel() {
     val nicknamesForTeams: LiveData<List<String>>
         get() = _nicknamesForTeams
 
-    private val nicknamesFinalList = mutableListOf<String>()
 
     fun checkNicknamesNotDuplicates(nicknamesList: List<String>): List<String> {
         val localNicknamesList = mutableListOf<String>()
@@ -23,12 +22,7 @@ class AddTeamViewModel : ViewModel() {
             } else break // break if list already full
         }
 
-        nicknamesFinalList.intersect(localNicknamesList.toSet())
         return localNicknamesList
-    }
-
-    fun getNicknamesInLiveData() {
-        _nicknamesForTeams.value = nicknamesFinalList
     }
 
     companion object {
