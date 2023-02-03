@@ -87,7 +87,7 @@ class AddTeamFragment : Fragment() {
             btnAddTeam.setOnClickListener {
                 if (countTeams < MAX_COUNT_TEAMS) {
                     teams[countTeams].text =
-                        getNicknamesWithoutDuplicate().random()
+                        getNicknamesWithoutDuplicate()[countTeams]
 
                     teams[countTeams].isVisible = true
                     separators[countTeams].isVisible = true
@@ -101,13 +101,13 @@ class AddTeamFragment : Fragment() {
         }
     }
 
+
     private fun launchGameFragment() {
         binding.btnSaveTeam.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(
                     R.id.fragment_container,
-                    GameFragment.newInstanceGame(getNicknamesWithoutDuplicate().random())
-                )
+                    GameFragment.newInstanceGame(getNicknamesWithoutDuplicate().first()))
                 .addToBackStack(null)
                 .commit()
         }
