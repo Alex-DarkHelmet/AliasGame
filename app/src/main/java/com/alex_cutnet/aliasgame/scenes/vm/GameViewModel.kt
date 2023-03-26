@@ -1,20 +1,18 @@
-package com.alex_cutnet.aliasgame.scenes
+package com.alex_cutnet.aliasgame.scenes.vm
 
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GameViewModel() : ViewModel() {
+class GameViewModel : ViewModel() {
 
     private var timer: CountDownTimer? = null
 
-    //question in game
-    private var _questionWord = MutableLiveData<String>()
-    val word: LiveData<String>
+    private var _questionWord = MutableLiveData<List<String>>()
+    val questionWord: LiveData<List<String>>
         get() = _questionWord
 
-    //count true answers
     private var _scoreTrueAnswers = MutableLiveData<Int>()
     val scoreTrueAnswers: LiveData<Int>
         get() = _scoreTrueAnswers
@@ -22,6 +20,10 @@ class GameViewModel() : ViewModel() {
     private var _formattedTime = MutableLiveData<String>()
     val formattedTime: LiveData<String>
         get() = _formattedTime
+
+    fun startGame() {
+        startTimer()
+    }
 
     private fun startTimer() {
         timer = object : CountDownTimer(
@@ -37,6 +39,19 @@ class GameViewModel() : ViewModel() {
             }
         }
         timer?.start()
+    }
+
+    fun getQuestions(questions: List<String>): LiveData<List<String>> {
+        val questionsForOneRound = mutableListOf<String>()
+
+        for (question in questions) {
+            if (MAX_SIZE_QUESTIONS_LIST != questionsForOneRound.size) {
+                questionsForOneRound.add(question)
+            }
+        }
+
+        _questionWord.value = questionsForOneRound.toList()
+        return _questionWord
     }
 
     override fun onCleared() {
@@ -57,6 +72,7 @@ class GameViewModel() : ViewModel() {
     }
 
     companion object {
+        private const val MAX_SIZE_QUESTIONS_LIST = 10
         private const val ONE_MINUTE_GAME = 60
         private const val MILLIS_IN_SECONDS = 1000L
     }

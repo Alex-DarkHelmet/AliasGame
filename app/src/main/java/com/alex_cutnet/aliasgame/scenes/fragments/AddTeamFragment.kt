@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.alex_cutnet.aliasgame.R
 import com.alex_cutnet.aliasgame.databinding.FragmentAddTeamBinding
-import com.alex_cutnet.aliasgame.scenes.AddTeamViewModel
+import com.alex_cutnet.aliasgame.scenes.vm.AddTeamViewModel
 
 class AddTeamFragment : Fragment() {
 
@@ -18,47 +15,26 @@ class AddTeamFragment : Fragment() {
     private val binding: FragmentAddTeamBinding
         get() = _binding ?: throw RuntimeException("FragmentAddTeamBinding == null")
 
-    private lateinit var teams: List<TextView>
-    private lateinit var separatorsTeams: List<View>
 
-    private lateinit var viewModel: AddTeamViewModel
+    private val viewModel: AddTeamViewModel by lazy {
+        ViewModelProvider(this)[AddTeamViewModel::class.java]
+    }
 
-    private var countTeams = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddTeamBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[AddTeamViewModel::class.java]
-
-        teams = listOf(
-            binding.team1,
-            binding.team2,
-            binding.team3,
-            binding.team4,
-            binding.team5,
-        )
-        separatorsTeams = listOf(
-            binding.sep1,
-            binding.sep2,
-            binding.sep3,
-            binding.sep4,
-            binding.sep5,
-        )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnAddTeam.setOnClickListener {
-            createNewTeam()
-        }
-
-        binding.btnSaveTeam.setOnClickListener {
-            launchGameFragment()
-        }
+        readNicknamesFromFile()
+        observeViewModeLiveData()
+        generateNewNicknames()
     }
 
     override fun onDestroyView() {
@@ -66,53 +42,38 @@ class AddTeamFragment : Fragment() {
         _binding = null
     }
 
-    private fun readNicknamesFromAssets(): List<String> {
-        // reading file from assets
-        val nicknamesTextFile = activity?.assets
-            ?.open("names")
-            ?.bufferedReader()
-            .use {
-                it?.readLines()?.shuffled()
-            } ?: throw RuntimeException("file in not found")
-
-        return nicknamesTextFile
-    }
-
-    private fun getNicknamesWithoutDuplicate(): List<String> {
-        return viewModel.checkNicknamesNotDuplicates(readNicknamesFromAssets())
-    }
-
-    private fun createNewTeam() {
-        with(binding) {
-            if (countTeams < MAX_COUNT_TEAMS) {
-                teams[countTeams].text =
-                    getNicknamesWithoutDuplicate()[countTeams]
-
-                teams[countTeams].isVisible = true
-                separatorsTeams[countTeams].isVisible = true
-
-                if (countTeams == MAX_COUNT_TEAMS - 1) {
-                    btnAddTeam.isVisible = false
-                }
-                countTeams++
-            }
+    private fun observeViewModeLiveData() {
+        viewModel.nicknamesLiveData.observe(viewLifecycleOwner) {
+            binding.team1.text = it[0]
+            binding.team2.text = it[1]
         }
     }
 
-
-    private fun launchGameFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.fragment_container,
-                GameFragment.newInstanceGame(getNicknamesWithoutDuplicate().first())
-            )
-            .addToBackStack(null)
-            .commit()
+    private fun readNicknamesFromFile() {
+        viewModel.nicknames(viewModel.readFileFromAssets(FILE_NICKNAMES))
     }
 
+    private fun generateNewNicknames() {
+        binding.generateNewNicknames.setOnClickListener {
+            readNicknamesFromFile()
+            observeViewModeLiveData()
+        }
+    }
+
+//    private fun launchGameFragment() {
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(
+//                R.id.fragment_container,
+//                GameFragment.newInstanceGame()
+//            )
+//            .addToBackStack(null)
+//            .commit()
+//    }
+
     companion object {
-        private const val MAX_COUNT_TEAMS = 5
+        private const val FILE_NICKNAMES = "names"
 
         fun newInstanceAddTeam(): AddTeamFragment = AddTeamFragment()
     }
 }
+

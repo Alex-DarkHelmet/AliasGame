@@ -12,7 +12,7 @@
         android:id="@+id/header_add_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_new_team"
+        android:text="@string/names_teams"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -23,20 +23,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/header_add_team1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/max_5_teams"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/header_add_team"
-        tools:ignore="MissingConstraints" />
 
     <ScrollView
         android:id="@+id/scroll_team"
@@ -68,7 +54,6 @@
                 android:gravity="center"
                 android:textSize="25sp"
                 android:padding="10sp"
-                android:visibility="gone"
                 />
 
             <View
@@ -76,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darker_grey"
-                android:visibility="gone"/>
+                />
 
             <TextView
                 android:id="@+id/team_2"
@@ -87,7 +72,6 @@
                 android:gravity="center"
                 android:textSize="25sp"
                 android:padding="10sp"
-                android:visibility="gone"
                 />
 
             <View
@@ -95,79 +79,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darker_grey"
-                android:visibility="gone"/>
+                />
 
-            <TextView
-                android:id="@+id/team_3"
+            <Button
+                android:id="@+id/generate_new_nicknames"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/team"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="25sp"
+                android:text="@string/generate_new_nicknames"
                 android:padding="10sp"
-                android:visibility="gone"
                 />
-
-            <View
-                android:id="@+id/sep3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/darker_grey"
-                android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/team_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/team"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="25sp"
-                android:padding="10sp"
-                android:visibility="gone"
-                />
-
-            <View
-                android:id="@+id/sep4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/darker_grey"
-                android:visibility="gone"
-                />
-
-            <TextView
-                android:id="@+id/team_5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/team"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="25sp"
-                android:padding="10sp"
-                android:visibility="gone"
-                />
-            <View
-                android:id="@+id/sep5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/darker_grey"
-                android:visibility="gone"/>
-
 
         </LinearLayout>
-    </ScrollView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_add_team"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10sp"
-        android:text="@string/add_new_team"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scroll_team"
-        tools:ignore="MissingConstraints" />
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save_team"
